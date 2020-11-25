@@ -38,10 +38,10 @@ public class AdmSystemUserUseCaseAdapter implements AdmSystemUserUseCasePort {
 					.orElseThrow(() -> new SRSException(BugCatalog.ROL_USUARIO_NO_EXISTE));
 			roles.add(rol);
 		}
-		SystemUserRol.eliminarRolesDuplicados(roles);
+		SystemUserRol.deleteDuplicateRoles(roles);
 		Collections.sort(roles);
-		SystemUser usuarioNuevo = new SystemUser(userDTO, roles, new SecurityCompany(userDTO.getCompanyId()));
-		systemUserRepository.save(usuarioNuevo);
+		SystemUser systemUser = new SystemUser(userDTO, roles, new SecurityCompany(userDTO.getCompanyId()));
+		systemUserRepository.save(systemUser);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class AdmSystemUserUseCaseAdapter implements AdmSystemUserUseCasePort {
 					.orElseThrow(() -> new SRSException(BugCatalog.ROL_USUARIO_NO_EXISTE));
 			roles.add(rol);
 		}
-		SystemUserRol.eliminarRolesDuplicados(roles);
+		SystemUserRol.deleteDuplicateRoles(roles);
 		Collections.sort(roles);
 		user.updating(userDTO, roles);
 		systemUserRepository.save(user);

@@ -14,8 +14,6 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.utn.frba.srs.utils.Ubication;
-
 import lombok.Data;
 
 @Data

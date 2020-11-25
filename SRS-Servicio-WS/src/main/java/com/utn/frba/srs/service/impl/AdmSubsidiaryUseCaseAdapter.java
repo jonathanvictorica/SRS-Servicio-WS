@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.utn.frba.srs.exception.NotFoundException;
 import com.utn.frba.srs.model.Subsidiary;
+import com.utn.frba.srs.model.Ubication;
 import com.utn.frba.srs.repository.SubsidiaryRepository;
 import com.utn.frba.srs.service.AdmSubsidiaryUseCasePort;
-import com.utn.frba.srs.utils.Ubication;
 
 @Service
 public class AdmSubsidiaryUseCaseAdapter implements AdmSubsidiaryUseCasePort {

@@ -1,4 +1,4 @@
-package com.utn.frba.srs.utils;
+package com.utn.frba.srs.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

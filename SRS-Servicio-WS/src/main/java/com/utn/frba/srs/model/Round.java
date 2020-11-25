@@ -22,8 +22,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.utn.frba.srs.utils.Ubication;
-
 import lombok.Data;
 
 @Data

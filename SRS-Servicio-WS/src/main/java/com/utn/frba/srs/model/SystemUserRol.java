@@ -66,7 +66,7 @@ public class SystemUserRol implements Comparable<SystemUserRol>, Serializable {
 		return this.level.compareTo(o.level);
 	}
 
-	public static void eliminarRolesDuplicados(List<SystemUserRol> roles) {
+	public static void deleteDuplicateRoles(List<SystemUserRol> roles) {
 		Map<String, SystemUserRol> rolesSimples = new HashMap<String, SystemUserRol>();
 		for (SystemUserRol rol : roles) {
 			if (rol != null) {

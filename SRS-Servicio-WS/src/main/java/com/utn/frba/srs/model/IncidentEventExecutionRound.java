@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.utn.frba.srs.utils.Ubication;
-
 import lombok.Data;
 
 @Data

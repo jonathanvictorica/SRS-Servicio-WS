@@ -6,11 +6,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class FechaUltils {
+public class FechaUtils {
 	private static int cantidadHorasDiferencia = 0;
 
 	public void setHorasDiferencia(int cantidadHoras) {
-		FechaUltils.cantidadHorasDiferencia = cantidadHoras;
+		FechaUtils.cantidadHorasDiferencia = cantidadHoras;
 	}
 
 	public static String obtenerDia(Date fecha) {
@@ -39,7 +39,7 @@ public class FechaUltils {
 
 	public static java.util.Date getFechaHoy() {
 
-		return restarHoras(Calendar.getInstance().getTime(), FechaUltils.cantidadHorasDiferencia);
+		return restarHoras(Calendar.getInstance().getTime(), FechaUtils.cantidadHorasDiferencia);
 	}
 
 	public static java.sql.Date convert(Date fecha) {

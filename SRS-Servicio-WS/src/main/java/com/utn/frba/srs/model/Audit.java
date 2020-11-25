@@ -10,7 +10,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
-import com.utn.frba.srs.utils.FechaUltils;
+import com.utn.frba.srs.utils.FechaUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

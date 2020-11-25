@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.utn.frba.srs.controller.dto.RequestGeneric;
 import com.utn.frba.srs.controller.dto.ResponseGeneric;
-import com.utn.frba.srs.controller.dto.RondaDTO;
+import com.utn.frba.srs.controller.dto.RoundDTO;
 import com.utn.frba.srs.exception.SRSException;
 
 public interface AdmRoundController {
 
-	@PostMapping(path = "/ronda")
-	public void crear(@RequestBody RequestGeneric<RondaDTO> request) throws SRSException;
+	@PostMapping(path = "/round")
+	public void create(@RequestBody RequestGeneric<RoundDTO> request) throws SRSException;
 
-	@DeleteMapping(path = "/ronda")
-	public void eliminar(@PathVariable("id") Long id) throws SRSException;
+	@DeleteMapping(path = "/round")
+	public void delete(@PathVariable("id") Long id) throws SRSException;
 
-	@GetMapping(path = "/ronda/{id}")
-	public ResponseGeneric<RondaDTO> obtenerPorId(@PathVariable("id") Long id) throws SRSException;
+	@GetMapping(path = "/round/{id}")
+	public ResponseGeneric<RoundDTO> findById(@PathVariable("id") Long id) throws SRSException;
 
-	@GetMapping(path = "/rondas/{idSucursal}")
-	public ResponseGeneric<List<RondaDTO>> listarPorSucursal(@PathVariable("idSucursal") Long idSucursal)
+	@GetMapping(path = "/rounds/{subsidiaryId}")
+	public ResponseGeneric<List<RoundDTO>> findBySubsidiary(@PathVariable("subsidiaryId") Long subsidiaryId)
 			throws SRSException;
 
-	@GetMapping(path = "/ronda/{idSucursal}/{nombreRonda}")
-	public ResponseGeneric<RondaDTO> obtenerPorSucursalPorNombreRonda(@PathVariable("idSucursal") Long idSucursal,
-			@PathVariable("nombreRonda") String nombreRonda) throws SRSException;
+	@GetMapping(path = "/round/{subsidiaryId}/{roundName}")
+	public ResponseGeneric<RoundDTO> findBySubsidiaryAndRoundName(@PathVariable("subsidiaryId") Long subsidiaryId,
+			@PathVariable("roundName") String roundName) throws SRSException;
 
-	@GetMapping(path = "/ronda/{idEmpresaSeguridad}")
-	public ResponseGeneric<List<RondaDTO>> listarPorEmpresa(
-			@PathVariable("idEmpresaSeguridad") Long idEmpresaSeguridad) throws SRSException;
+	@GetMapping(path = "/round/{securityCompanyCustomerId}")
+	public ResponseGeneric<List<RoundDTO>> findBySecurityCompanyCustomer(
+			@PathVariable("securityCompanyCustomerId") Long securityCompanyCustomerId) throws SRSException;
 
 }
