@@ -2,10 +2,13 @@ package com.utn.frba.srs.controller.dto;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class ResponseGeneric<D> implements Serializable{
+@AllArgsConstructor
+public class ResponseGeneric<D> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -13,13 +16,19 @@ public class ResponseGeneric<D> implements Serializable{
 
 	private D data;
 
+	public ResponseGeneric() {
+		this.header = new Header("OK", "000", "Successful");
+	}
+
 	@Data
-	public static class Header implements Serializable{
+	@AllArgsConstructor
+	@NoArgsConstructor
+	public static class Header implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
-		private String severidad;
-		private String codigo;
-		private String descripcion;
+		private String severity;
+		private String code;
+		private String details;
 	}
 }

@@ -11,32 +11,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.utn.frba.srs.controller.dto.RequestGeneric;
 import com.utn.frba.srs.controller.dto.ResponseGeneric;
-import com.utn.frba.srs.controller.dto.SucursalDTO;
+import com.utn.frba.srs.controller.dto.SubsidiaryDTO;
 import com.utn.frba.srs.exception.SRSException;
 
 public interface AdmSubsidiaryController {
 
-	@PostMapping(path = "/sucursal")
-	public void crear(@RequestBody RequestGeneric<SucursalDTO> request) throws SRSException;
+	@PostMapping(path = "/subsidiary")
+	public void create(@RequestBody RequestGeneric<SubsidiaryDTO> request) throws SRSException;
 
-	@PutMapping(path = "/sucursal")
-	public void modificar(@RequestBody RequestGeneric<SucursalDTO> request) throws SRSException;
+	@PutMapping(path = "/subsidiary")
+	public void update(@RequestBody RequestGeneric<SubsidiaryDTO> request) throws SRSException;
 
-	@DeleteMapping(path = "/sucursal/{id}")
-	public void eliminar(@PathVariable("id") Long id) throws SRSException;
+	@DeleteMapping(path = "/subsidiary/{id}")
+	public void delete(@PathVariable("id") Long id) throws SRSException;
 
-	@GetMapping(path = "/sucursal/{id}")
-	public ResponseGeneric<SucursalDTO> obtenerPorId(@PathVariable("id") Long id) throws SRSException;
+	@GetMapping(path = "/subsidiary/{id}")
+	public ResponseGeneric<SubsidiaryDTO> findById(@PathVariable("id") Long id) throws SRSException;
 
-	@GetMapping(path = "/sucursal/{idCliente}/{nombre}")
-	public ResponseGeneric<SucursalDTO> obtenerPorIdClientePorNombre(@PathVariable("idCliente") Long idCliente,
-			@PathVariable("nombre") String nombre) throws SRSException;
+	@GetMapping(path = "/subsidiary/{customerId}/{name}")
+	public ResponseGeneric<SubsidiaryDTO> findByCustomerIdByName(@PathVariable("customerId") Long customerId,
+			@PathVariable("nombre") String name) throws SRSException;
 
-	@GetMapping(path = "/sucursales/{idCliente}")
-	public ResponseGeneric<List<SucursalDTO>> listarPorEmpresaSeguridad(@PathVariable("idCliente") Long idCliente);
+	@GetMapping(path = "/subsidiaryes/{customerId}")
+	public ResponseGeneric<List<SubsidiaryDTO>> findBySecurityCompany(@PathVariable("customerId") Long customerId);
 
-	@PutMapping(path = "/sucursal/{idSucursal}/{lantitud}/{longitud}")
-	public ResponseGeneric<String> modificarUbicacionSucursal(@PathVariable("idSucursal") Long idCliente,
-			@PathVariable("lantitud") String lantitud, @PathVariable("longitud") String longitud) throws SRSException;
+	@PutMapping(path = "/subsidiary/{idsubsidiary}/{lantitud}/{longitud}")
+	public void updateUbication(@PathVariable("subsidiaryId") Long subsidiaryId,
+			@PathVariable("latitude") String latitude, @PathVariable("longitude") String longitude)
+			throws SRSException;
 
 }

@@ -2,6 +2,7 @@ package com.utn.frba.srs.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class Subsidiary implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	private SecurityCompanyCustomer securityCompanyCustomer;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Domicile domicile;
 
 	@Embedded

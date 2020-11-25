@@ -13,6 +13,7 @@ import com.utn.frba.srs.controller.dto.RequestGeneric;
 import com.utn.frba.srs.controller.dto.ResponseGeneric;
 import com.utn.frba.srs.controller.dto.RolUsuarioDTO;
 import com.utn.frba.srs.controller.dto.UserDTO;
+import com.utn.frba.srs.controller.mapper.RolMapper;
 import com.utn.frba.srs.controller.mapper.UserMapper;
 import com.utn.frba.srs.exception.SRSException;
 import com.utn.frba.srs.service.ActionsSystemUserUseCasePort;
@@ -24,8 +25,8 @@ import io.swagger.annotations.Api;
 
 @RestController
 @RequestMapping(path = "/v1")
-@Api(tags = "AdministrarUsuario", description = ("AdministrarUsuario"))
-public class AdmUsuarioControllerImpl extends GenericWS implements AdmUserController {
+@Api(tags = "AdmUser", description = ("AdmUser"))
+public class AdmUserControllerImpl extends GenericWS implements AdmUserController {
 
 	@Autowired
 	private AdmSystemUserUseCasePort admSystemUserUseCasePort;
@@ -40,6 +41,7 @@ public class AdmUsuarioControllerImpl extends GenericWS implements AdmUserContro
 	private QuerySystemUserRoleUseCasePort querySystemUserRoleUseCasePort;
 
 	private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
+	private RolMapper rolMapper = Mappers.getMapper(RolMapper.class);
 
 	@Override
 	public void create(RequestGeneric<UserDTO> userDTO) throws SRSException {
@@ -100,7 +102,8 @@ public class AdmUsuarioControllerImpl extends GenericWS implements AdmUserContro
 	@Override
 	public ResponseGeneric<List<RolUsuarioDTO>> listarRoles() throws SRSException {
 		ResponseGeneric<List<RolUsuarioDTO>> response = new ResponseGeneric<>();
-		response.setData(querySystemUserRoleUseCasePort.allRoles());
+		response.setData(querySystemUserRoleUseCasePort.allRoles().stream().map(a -> rolMapper.transformer(a))
+				.collect(Collectors.toList()));
 		return response;
 	}
 

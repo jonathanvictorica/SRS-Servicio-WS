@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.utn.frba.srs.controller.dto.UserDTO;
+import com.utn.frba.srs.exception.SRSException;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -177,6 +178,13 @@ public class SystemUser implements Serializable{
 	public SystemUser(Long id) {
 		super();
 		this.id = id;
+	}
+
+	public void validatePassword(String password) throws SRSException {
+		if(this.password.equals(password)) {
+			throw new SRSException("La password no coincide");
+		}
+		
 	}
 
 }

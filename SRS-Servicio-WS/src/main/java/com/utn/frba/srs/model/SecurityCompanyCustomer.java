@@ -2,6 +2,7 @@ package com.utn.frba.srs.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -15,7 +16,9 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
@@ -26,6 +29,8 @@ import lombok.Data;
 				@Index(name = "idx_businessName", columnList = "businessName"),
 				@Index(name = "idx_securityCompany", columnList = "securityCompany_id")				
 })
+@AllArgsConstructor
+@NoArgsConstructor
 public class SecurityCompanyCustomer implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -52,7 +57,7 @@ public class SecurityCompanyCustomer implements Serializable{
     @Column(nullable = false)
 	private String documentNumber;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Domicile domicile;
 	
 	@NotNull

@@ -37,6 +37,9 @@ public class ErrorHandlingControllerAdvice {
 		if (ex.getCause() != null && ex.getCause().getCause() != null) {
 			error.getErrors().add(new ErrorHandling("98", "Error", ex.getCause().getCause().getClass().toString(), "",
 					ex.getCause().getCause().getMessage()));
+		} else if (ex.getCause() != null) {
+			error.getErrors().add(new ErrorHandling("98", "Error", ex.getCause().getClass().toString(), "",
+					ex.getCause().getMessage()));
 		}
 
 		return error;
