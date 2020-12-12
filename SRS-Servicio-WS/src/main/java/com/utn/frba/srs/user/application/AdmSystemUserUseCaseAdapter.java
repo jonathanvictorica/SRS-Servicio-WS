@@ -10,13 +10,13 @@ import org.springframework.util.CollectionUtils;
 
 import com.utn.frba.srs.application5.AdmSystemUserUseCasePort;
 import com.utn.frba.srs.infraestructure.controller.dto.UserDTO;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SystemUserRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SystemUserRolRepository;
 import com.utn.frba.srs.securitycompany.infraestructure.persistence.hibernate.entity.SecurityCompany;
 import com.utn.frba.srs.shared.domain.BugCatalog;
 import com.utn.frba.srs.shared.domain.SRSException;
-import com.utn.frba.srs.user.domain.infraestructure.persistence.hibernate.entity.SystemUser;
-import com.utn.frba.srs.user.domain.infraestructure.persistence.hibernate.entity.SystemUserRol;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUser;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUserRol;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.repository.SystemUserRepository;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.repository.SystemUserRolRepository;
 
 @Service
 public class AdmSystemUserUseCaseAdapter implements AdmSystemUserUseCasePort {

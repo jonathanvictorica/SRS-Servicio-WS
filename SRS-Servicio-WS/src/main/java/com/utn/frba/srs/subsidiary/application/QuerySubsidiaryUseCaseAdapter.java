@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.utn.frba.srs.application5.QuerySubsidiaryUseCasePort;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SubsidiaryRepository;
 import com.utn.frba.srs.shared.domain.NotFoundException;
 import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
+import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.repository.SubsidiaryRepository;
 
 @Service
 public class QuerySubsidiaryUseCaseAdapter implements QuerySubsidiaryUseCasePort {

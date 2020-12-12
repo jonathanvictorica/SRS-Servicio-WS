@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.utn.frba.srs.application5.AdmSecurityCompanyUseCasePort;
 import com.utn.frba.srs.infraestructure.controller.dto.EmpresaDTO;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SecurityCompanyRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SystemUserRepository;
 import com.utn.frba.srs.securitycompany.infraestructure.persistence.hibernate.entity.SecurityCompany;
+import com.utn.frba.srs.securitycompany.infraestructure.persistence.hibernate.repository.SecurityCompanyRepository;
 import com.utn.frba.srs.shared.domain.BugCatalog;
 import com.utn.frba.srs.shared.domain.SRSException;
-import com.utn.frba.srs.user.domain.infraestructure.persistence.hibernate.entity.SystemUser;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUser;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.repository.SystemUserRepository;
 
 @Service
 public class AdmSecurityCompanyUseCaseAdapter implements AdmSecurityCompanyUseCasePort {

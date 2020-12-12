@@ -1,17 +1,17 @@
 package com.utn.frba.srs.round.infraestructure.persistence.adapter;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.utn.frba.srs.round.domain.Round;
-import com.utn.frba.srs.round.domain.RoundCheckpoint;
 import com.utn.frba.srs.round.domain.RoundRepository;
-import com.utn.frba.srs.round.domain.RoundRoute;
-import com.utn.frba.srs.round.infraestructure.persistence.hibernate.entity.RoundCheckpointEntity;
 import com.utn.frba.srs.round.infraestructure.persistence.hibernate.entity.RoundEntity;
-import com.utn.frba.srs.round.infraestructure.persistence.hibernate.entity.RoundRouteEntity;
 import com.utn.frba.srs.round.infraestructure.persistence.hibernate.repository.HibernateRoundRepository;
 
 @Service
@@ -40,8 +40,32 @@ public class RoundRepositoryAdapter implements RoundRepository {
 
 	@Override
 	public void delete(String id) {
-		hibernateRoundRepository.updateRountState(id,"DES");
-		
+		hibernateRoundRepository.updateRountState(id, "DES");
+
+	}
+
+	@Override
+	public Optional<Round> findById(Long id) {
+		return Optional
+				.ofNullable(entityFactory.roundEntityToRound(hibernateRoundRepository.findById(id).orElse(null)));
+	}
+
+	@Override
+	public List<Round> findBySubsidiary_id(Long subsidiaryId) {
+		return hibernateRoundRepository.findBySubsidiary_id(subsidiaryId).stream()
+				.map(a -> entityFactory.roundEntityToRound(a)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Round> findBySubsidiary_SecurityCompanyCustomer_id(Long securityCompanyCustomerId) {
+		return hibernateRoundRepository.findBySubsidiary_SecurityCompanyCustomer_id(securityCompanyCustomerId).stream()
+				.map(a -> entityFactory.roundEntityToRound(a)).collect(Collectors.toList());
+	}
+
+	@Override
+	public Round findBySubsidiary_idAndName(Long subsidiaryId, String roundName) {
+		return entityFactory
+				.roundEntityToRound(hibernateRoundRepository.findBySubsidiary_idAndName(subsidiaryId, roundName));
 	}
 
 }
@@ -51,10 +75,6 @@ interface EntityMapper {
 
 	public abstract RoundEntity roundToRoundEntity(Round round);
 
-	public abstract RoundCheckpointEntity roundCheckpointToRoundCheckpointEntity(RoundCheckpoint roundCheckpoint);
-
-	public abstract RoundRouteEntity roundRouteToRoundRouteEntity(RoundRoute roundRoute);
-	
-	
+	public abstract Round roundEntityToRound(RoundEntity findById);
 
 }

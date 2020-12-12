@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.Mappings;
 
 import com.utn.frba.srs.infraestructure.controller.dto.UserDTO;
-import com.utn.frba.srs.user.domain.infraestructure.persistence.hibernate.entity.SystemUser;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUser;
 
 @Mapper
 public abstract class UserMapper {

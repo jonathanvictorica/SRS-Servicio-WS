@@ -8,22 +8,22 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.utn.frba.srs.checkpoint.infraestructure.persistence.hibernate.entity.Checkpoint;
-import com.utn.frba.srs.infraestructure.repository.hibernate.CheckPointRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.ClienteEmpresaSeguridadRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.RoundStateRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SecurityCompanyRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SubsidiaryRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SystemUserRepository;
-import com.utn.frba.srs.infraestructure.repository.hibernate.SystemUserRolRepository;
+import com.utn.frba.srs.checkpoint.infraestructure.persistence.hibernate.repository.CheckPointRepository;
 import com.utn.frba.srs.round.infraestructure.persistence.hibernate.entity.RoundStateEntity;
+import com.utn.frba.srs.round.infraestructure.persistence.hibernate.repository.RoundStateRepository;
 import com.utn.frba.srs.securitycompany.infraestructure.persistence.hibernate.entity.SecurityCompany;
+import com.utn.frba.srs.securitycompany.infraestructure.persistence.hibernate.repository.SecurityCompanyRepository;
 import com.utn.frba.srs.securitycompanycustomer.infraestructure.persistence.hibernate.entity.SecurityCompanyCustomer;
+import com.utn.frba.srs.securitycompanycustomer.infraestructure.persistence.hibernate.repository.ClienteEmpresaSeguridadRepository;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Domicile;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
+import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.repository.SubsidiaryRepository;
 import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUser;
 import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUserRol;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.repository.SystemUserRepository;
+import com.utn.frba.srs.user.infraestructure.persistence.hibernate.repository.SystemUserRolRepository;
 
 @Component
 public class DataLoader implements ApplicationRunner {
