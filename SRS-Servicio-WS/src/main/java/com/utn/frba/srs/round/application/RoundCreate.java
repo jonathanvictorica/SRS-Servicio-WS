@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
-import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.Request;
 
 import lombok.Data;
 
@@ -44,9 +43,9 @@ public class RoundCreate {
 
 		private String description;
 
-		private List<Request.RoundCheckpoint> checkpoints;
+		private List<RoundCreateCommand.RoundCheckpoint> checkpoints;
 
-		private List<Request.RoundRoute> routes;
+		private List<RoundCreateCommand.RoundRoute> routes;
 
 		private Ubication ubication;
 
@@ -59,7 +58,7 @@ public class RoundCreate {
 
 			private static final long serialVersionUID = 1L;
 
-			private Request.RoundCheckpoint.Checkpoint checkpoint;
+			private RoundCreateCommand.RoundCheckpoint.Checkpoint checkpoint;
 
 			private Integer executionOrder;
 
@@ -80,7 +79,7 @@ public class RoundCreate {
 
 			private int routeOrder;
 
-			private Request.Ubication ubication;
+			private RoundCreateCommand.Ubication ubication;
 
 		}
 
