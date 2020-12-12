@@ -24,9 +24,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.utn.frba.srs.domain.model.Audit;
-import com.utn.frba.srs.domain.model.Subsidiary;
-import com.utn.frba.srs.domain.model.Ubication;
+import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
+import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
+import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
 
 import lombok.Getter;
 import lombok.Setter;

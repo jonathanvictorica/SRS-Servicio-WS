@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utn.frba.srs.application5.AdmSecurityCompanyUseCasePort;
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.AdmCompanySecurityController;
 import com.utn.frba.srs.infraestructure.controller.dto.EmpresaDTO;
 import com.utn.frba.srs.infraestructure.controller.dto.RequestGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.ResponseGeneric;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 import io.swagger.annotations.Api;
 

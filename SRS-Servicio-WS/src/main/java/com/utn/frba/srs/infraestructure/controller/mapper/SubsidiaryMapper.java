@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import com.utn.frba.srs.domain.model.Subsidiary;
 import com.utn.frba.srs.infraestructure.controller.dto.SubsidiaryDTO;
+import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
 
 @Mapper
 public abstract class SubsidiaryMapper {

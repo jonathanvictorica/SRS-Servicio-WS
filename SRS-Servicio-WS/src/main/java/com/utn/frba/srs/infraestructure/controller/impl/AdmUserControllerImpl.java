@@ -12,7 +12,6 @@ import com.utn.frba.srs.application5.ActionsSystemUserUseCasePort;
 import com.utn.frba.srs.application5.AdmSystemUserUseCasePort;
 import com.utn.frba.srs.application5.QuerySystemUserRoleUseCasePort;
 import com.utn.frba.srs.application5.QuerySystemUserUseCasePort;
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.AdmUserController;
 import com.utn.frba.srs.infraestructure.controller.dto.RequestGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.ResponseGeneric;
@@ -20,6 +19,7 @@ import com.utn.frba.srs.infraestructure.controller.dto.RolUsuarioDTO;
 import com.utn.frba.srs.infraestructure.controller.dto.UserDTO;
 import com.utn.frba.srs.infraestructure.controller.mapper.RolMapper;
 import com.utn.frba.srs.infraestructure.controller.mapper.UserMapper;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 import io.swagger.annotations.Api;
 

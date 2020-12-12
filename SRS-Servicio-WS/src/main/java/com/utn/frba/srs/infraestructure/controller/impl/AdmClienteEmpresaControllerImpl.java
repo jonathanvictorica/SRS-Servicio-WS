@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.AdmCompanyClientController;
 import com.utn.frba.srs.infraestructure.controller.dto.ClienteEmpresaDTO;
 import com.utn.frba.srs.infraestructure.controller.dto.RequestGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.ResponseGeneric;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 import io.swagger.annotations.Api;
 

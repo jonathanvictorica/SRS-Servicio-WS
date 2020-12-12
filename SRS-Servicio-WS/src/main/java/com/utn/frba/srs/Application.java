@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
-import com.utn.frba.srs.infraestructure.configuration.SwaggerConfiguration;
+import com.utn.frba.srs.shared.infraestructure.SwaggerConfiguration;
 
 @SpringBootApplication
 @ComponentScan({ "com.utn.frba.srs.*" })

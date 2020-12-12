@@ -3,8 +3,8 @@ package com.utn.frba.srs.infraestructure.controller.impl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.ActionPlanningRoundController;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 import io.swagger.annotations.Api;
 

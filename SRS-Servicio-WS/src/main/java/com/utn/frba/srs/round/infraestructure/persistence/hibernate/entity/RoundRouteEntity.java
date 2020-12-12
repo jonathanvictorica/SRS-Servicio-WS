@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import com.utn.frba.srs.domain.model.Ubication;
+import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
 import lombok.Getter;
 import lombok.Setter;

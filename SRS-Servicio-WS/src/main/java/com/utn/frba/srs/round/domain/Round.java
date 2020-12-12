@@ -2,7 +2,7 @@ package com.utn.frba.srs.round.domain;
 
 import java.util.List;
 
-import com.utn.frba.srs.domain.model.Ubication;
+import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import com.utn.frba.srs.domain.exception.SRSException;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 public interface ActionPlanningRoundController {
 

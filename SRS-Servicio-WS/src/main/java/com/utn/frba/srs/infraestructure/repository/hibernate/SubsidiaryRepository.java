@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.utn.frba.srs.domain.model.Subsidiary;
+import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
 
 @Repository
 public interface SubsidiaryRepository extends JpaRepository<Subsidiary, Long> {

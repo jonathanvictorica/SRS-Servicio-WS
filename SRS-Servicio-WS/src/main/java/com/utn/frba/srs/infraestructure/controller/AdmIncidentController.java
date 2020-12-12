@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.dto.CerrarIncidenteDTO;
 import com.utn.frba.srs.infraestructure.controller.dto.IncidenteDTO;
 import com.utn.frba.srs.infraestructure.controller.dto.RequestGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.ResponseGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.SeveridadDTO;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 public interface AdmIncidentController {
 

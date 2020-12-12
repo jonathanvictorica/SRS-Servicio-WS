@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.utn.frba.srs.application5.AdmSubsidiaryUseCasePort;
 import com.utn.frba.srs.application5.QuerySubsidiaryUseCasePort;
-import com.utn.frba.srs.domain.exception.SRSException;
 import com.utn.frba.srs.infraestructure.controller.AdmSubsidiaryController;
 import com.utn.frba.srs.infraestructure.controller.dto.RequestGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.ResponseGeneric;
 import com.utn.frba.srs.infraestructure.controller.dto.SubsidiaryDTO;
 import com.utn.frba.srs.infraestructure.controller.mapper.SubsidiaryMapper;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 import io.swagger.annotations.Api;
 

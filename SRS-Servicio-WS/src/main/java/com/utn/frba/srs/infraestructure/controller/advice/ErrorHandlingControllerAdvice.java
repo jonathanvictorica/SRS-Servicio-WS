@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.utn.frba.srs.domain.exception.SRSException;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 @ControllerAdvice
 public class ErrorHandlingControllerAdvice {

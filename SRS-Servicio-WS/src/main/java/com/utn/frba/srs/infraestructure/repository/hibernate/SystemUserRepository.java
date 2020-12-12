@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.utn.frba.srs.domain.model.SystemUser;
+import com.utn.frba.srs.user.domain.infraestructure.persistence.hibernate.entity.SystemUser;
 
 @Repository
 public interface SystemUserRepository extends CrudRepository<SystemUser, Long> {

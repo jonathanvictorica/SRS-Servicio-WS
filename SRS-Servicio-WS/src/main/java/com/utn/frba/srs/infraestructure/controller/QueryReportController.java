@@ -3,7 +3,7 @@ package com.utn.frba.srs.infraestructure.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.utn.frba.srs.domain.exception.SRSException;
+import com.utn.frba.srs.shared.domain.SRSException;
 
 public interface QueryReportController {
 	
