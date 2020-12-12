@@ -8,8 +8,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.utn.frba.srs.user.infraestructure.persistence.hibernate.entity.SystemUser;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,18 +23,10 @@ public class Audit implements Serializable, Cloneable {
 	@Column(nullable = false)
 	private Date creationDate = new Date();
 
-	@ManyToOne(optional = false)
-	@NotNull
-	private SystemUser creationUser;
+	private Long creationUser_id;
 
 	private Date modifierDateLast;
 
-	@ManyToOne(optional = true)
-	private SystemUser modifierUserLast;
-
-	@Override
-	public Audit clone() {
-		return new Audit(creationDate, creationUser, modifierDateLast, modifierUserLast);
-	}
+	private Long modifierUser_id;
 
 }

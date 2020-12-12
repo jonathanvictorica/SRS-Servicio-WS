@@ -40,7 +40,7 @@ public class RoundRepositoryAdapter implements RoundRepository {
 
 	@Override
 	public void delete(String id) {
-		hibernateRoundRepository.updateRountState(id, "DES");
+		hibernateRoundRepository.deleteById(id, false);
 
 	}
 
@@ -51,21 +51,15 @@ public class RoundRepositoryAdapter implements RoundRepository {
 	}
 
 	@Override
-	public List<Round> findBySubsidiary_id(Long subsidiaryId) {
-		return hibernateRoundRepository.findBySubsidiary_id(subsidiaryId).stream()
+	public List<Round> findBySubsidiaryId(Long subsidiaryId) {
+		return hibernateRoundRepository.findBySubsidiaryId(subsidiaryId).stream()
 				.map(a -> entityFactory.roundEntityToRound(a)).collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Round> findBySubsidiary_SecurityCompanyCustomer_id(Long securityCompanyCustomerId) {
-		return hibernateRoundRepository.findBySubsidiary_SecurityCompanyCustomer_id(securityCompanyCustomerId).stream()
-				.map(a -> entityFactory.roundEntityToRound(a)).collect(Collectors.toList());
-	}
-
-	@Override
-	public Round findBySubsidiary_idAndName(Long subsidiaryId, String roundName) {
+	public Round findBySubsidiaryIdAndName(Long subsidiaryId, String roundName) {
 		return entityFactory
-				.roundEntityToRound(hibernateRoundRepository.findBySubsidiary_idAndName(subsidiaryId, roundName));
+				.roundEntityToRound(hibernateRoundRepository.findBySubsidiaryIdAndName(subsidiaryId, roundName));
 	}
 
 }

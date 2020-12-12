@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
 				.apis(RequestHandlerSelectors
-				.basePackage("com.utn.frba.srs.controller"))
+				.basePackage("com.utn.frba.srs"))
 				.paths(PathSelectors.any())				
 				.build().apiInfo(apiInfo());
 	}

@@ -8,7 +8,6 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utn.frba.srs.infraestructure.controller.dto.RoundDTO;
 import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
@@ -41,9 +40,9 @@ public class RoundCreate {
 
 		private String description;
 
-		private List<RoundDTO.RoundCheckpointDTO> checkpoints;
+		private List<RoundCreateCommand.RoundCheckpointDTO> checkpoints;
 
-		private List<RoundDTO.RoundRouteDTO> routes;
+		private List<RoundCreateCommand.RoundRouteDTO> routes;
 
 		private UbicationDTO ubication;
 
@@ -76,7 +75,7 @@ public class RoundCreate {
 
 			private static final long serialVersionUID = 1L;
 
-			private RoundDTO.RoundCheckpointDTO.CheckpointDTO checkpoint;
+			private RoundCreateCommand.RoundCheckpointDTO.CheckpointDTO checkpoint;
 
 			private Integer executionOrder;
 

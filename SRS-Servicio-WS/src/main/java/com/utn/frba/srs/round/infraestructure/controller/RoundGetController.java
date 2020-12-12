@@ -2,20 +2,22 @@ package com.utn.frba.srs.round.infraestructure.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.round.application.RoundCreate;
-import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
-import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.Request;
+import com.utn.frba.srs.round.application.RoundFind;
+import com.utn.frba.srs.round.application.RoundFind.RoundQuery;
+import com.utn.frba.srs.round.infraestructure.controller.RoundGetController.Response;
 import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
 
 import io.swagger.annotations.Api;
@@ -25,19 +27,33 @@ import lombok.Data;
 @RestController
 @RequestMapping(path = "/v1")
 @Api(tags = "AdmRound", description = ("AdmRound"))
-public class RoundPostController extends GenericWS {
+public class RoundGetController extends GenericWS {
 
 	@Autowired
-	private RoundCreate roundCreate;
+	private RoundFind roundFind;
 
-	private RoundCreateCommandMapper mapper = Mappers.getMapper(RoundCreateCommandMapper.class);
+	private RoundFindQueryMapper mapper = Mappers.getMapper(RoundFindQueryMapper.class);
 
-	@PostMapping(path = "/round")
-	public void create(@RequestBody Request request) {
-		roundCreate.invoke(mapper.requestToRoundCreateCommand(request));
+	@GetMapping(path = "/round/{id}")
+	public ResponseEntity<Response> findById(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(mapper.roundQueryToResponse(roundFind.findById(id)));
 	}
 
-	public static @lombok.Data class Request implements Serializable {
+	@GetMapping(path = "/round/{subsidiaryId}/{roundName}")
+	public ResponseEntity<Response> findBySubsidiaryAndRoundName(@PathVariable("subsidiaryId") Long subsidiaryId,
+			@PathVariable("roundName") String roundName) {
+		return ResponseEntity
+				.ok(mapper.roundQueryToResponse(roundFind.findBySubsidiaryAndName(subsidiaryId, roundName)));
+	}
+
+	@GetMapping(path = "/rounds/{subsidiaryId}")
+	public ResponseEntity<List<Response>> findBySubsidiary(@PathVariable("subsidiaryId") Long subsidiaryId) {
+		return ResponseEntity.ok(roundFind.findBySubsidiary(subsidiaryId).stream()
+				.map(a -> mapper.roundQueryToResponse(a)).collect(Collectors.toList()));
+	}
+
+	@Data
+	public static class Response implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		private Long id;
@@ -54,10 +70,10 @@ public class RoundPostController extends GenericWS {
 		private String description;
 
 		@NotNull
-		private List<Request.RoundCheckpointDTO> checkpoints;
+		private List<Response.RoundCheckpointDTO> checkpoints;
 
 		@NotNull
-		private List<Request.RoundRouteDTO> routes;
+		private List<Response.RoundRouteDTO> routes;
 
 		@NotNull
 		private UbicationDTO ubication;
@@ -101,7 +117,7 @@ public class RoundPostController extends GenericWS {
 			private static final long serialVersionUID = 1L;
 
 			@NotNull
-			private Request.RoundCheckpointDTO.CheckpointDTO checkpoint;
+			private Response.RoundCheckpointDTO.CheckpointDTO checkpoint;
 
 			@ApiModelProperty(example = "1")
 			@NotNull
@@ -150,6 +166,6 @@ public class RoundPostController extends GenericWS {
 }
 
 @Mapper
-interface RoundCreateCommandMapper {
-	public RoundCreateCommand requestToRoundCreateCommand(Request request);
+interface RoundFindQueryMapper {
+	public Response roundQueryToResponse(RoundQuery response);
 }

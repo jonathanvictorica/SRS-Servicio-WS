@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
-import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,7 +48,6 @@ public class Checkpoint implements Serializable{
 	@Embedded
 	private Audit audit;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Subsidiary subsidiary;
+	private Long subsidiary_id;
 
 }

@@ -15,10 +15,8 @@ public interface RoundRepository {
 
 	Optional<Round> findById(Long id);
 
-	List<Round> findBySubsidiary_id(Long subsidiaryId);
+	List<Round> findBySubsidiaryId(Long subsidiaryId);
 
-	List<Round> findBySubsidiary_SecurityCompanyCustomer_id(Long securityCompanyCustomerId);
-
-	Round findBySubsidiary_idAndName(Long subsidiaryId, String roundName);
+	Round findBySubsidiaryIdAndName(Long subsidiaryId, String roundName);
 
 }

@@ -9,7 +9,6 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utn.frba.srs.infraestructure.controller.dto.RoundDTO;
 import com.utn.frba.srs.round.application.RoundFind.RoundQuery;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
@@ -22,7 +21,7 @@ public class RoundFind {
 	private Round round;
 
 	private RoundQueryMapper roundMapper = Mappers.getMapper(RoundQueryMapper.class);
-	
+
 	@Autowired
 	private RoundFind(RoundRepository roundRepository) {
 		round = new Round(roundRepository);
@@ -38,12 +37,7 @@ public class RoundFind {
 	}
 
 	public RoundQuery findBySubsidiaryAndName(Long subsidiaryId, String roundName) {
-		return roundMapper.roundToRoundQuery(round.findBySubsidiaryAndName(subsidiaryId,roundName));		
-	}
-
-	public List<RoundQuery> findBySecurityCompanyCustomer(Long securityCompanyCustomerId) {
-		return round.findBySecurityCompanyCustomer(securityCompanyCustomerId).stream()
-				.map(a -> roundMapper.roundToRoundQuery(a)).collect(Collectors.toList());
+		return roundMapper.roundToRoundQuery(round.findBySubsidiaryAndName(subsidiaryId, roundName));
 	}
 
 	@Data
@@ -55,9 +49,9 @@ public class RoundFind {
 
 		private String description;
 
-		private List<RoundDTO.RoundCheckpointDTO> checkpoints;
+		private List<RoundQuery.RoundCheckpointDTO> checkpoints;
 
-		private List<RoundDTO.RoundRouteDTO> routes;
+		private List<RoundQuery.RoundRouteDTO> routes;
 
 		private UbicationDTO ubication;
 
@@ -90,7 +84,7 @@ public class RoundFind {
 
 			private static final long serialVersionUID = 1L;
 
-			private RoundDTO.RoundCheckpointDTO.CheckpointDTO checkpoint;
+			private RoundQuery.RoundCheckpointDTO.CheckpointDTO checkpoint;
 
 			private Integer executionOrder;
 

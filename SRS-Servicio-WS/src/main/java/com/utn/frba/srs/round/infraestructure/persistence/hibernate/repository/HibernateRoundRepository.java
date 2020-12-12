@@ -13,20 +13,17 @@ public interface HibernateRoundRepository extends JpaRepository<RoundEntity, Lon
 	@Query("delete from RoundCheckpointEntity where round.id = ?1 ")
 	@Modifying
 	void deleteCheckpoints(Long roundId);
-	
+
 	@Query("delete from RoundRouteEntity where round.id = ?1 ")
 	@Modifying
 	void deleteRoutes(Long roundId);
 
-	@Query("update RoundEntity set s where round.roundState = ?2 ")
+	@Query("update RoundEntity set active = ?2 where id = ?1")
 	@Modifying
-	void updateRountState(String id, String string);
+	void deleteById(String id, Boolean active);
 
-	List<RoundEntity> findBySubsidiary_id(Long subsidiaryId);
+	List<RoundEntity> findBySubsidiaryId(Long subsidiaryId);
 
-	List<RoundEntity> findBySubsidiary_SecurityCompanyCustomer_id(Long securityCompanyCustomerId);
+	RoundEntity findBySubsidiaryIdAndName(Long subsidiaryId, String roundName);
 
-	RoundEntity findBySubsidiary_idAndName(Long subsidiaryId, String roundName);
-
-	
 }

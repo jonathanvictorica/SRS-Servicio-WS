@@ -2,7 +2,6 @@ package com.utn.frba.srs.round.domain;
 
 import java.util.List;
 
-import com.utn.frba.srs.shared.domain.NotFoundException;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
 import lombok.Data;
@@ -45,25 +44,20 @@ public class Round {
 		roundRepository.save(round);
 	}
 
-	public void delete(String id, String identificadorUsuario) {
+	public void delete(String id) {
 		roundRepository.delete(id);
 	}
 
 	public Round findById(Long id) {
-		return roundRepository.findById(id).orElseThrow(() -> new NotFoundException(id + ""));
+		return roundRepository.findById(id).orElse(null);
 	}
 
 	public List<Round> findBySubsidiary(Long subsidiaryId) {
-		return roundRepository.findBySubsidiary_id(subsidiaryId);
-	}
-
-	public List<Round> findBySecurityCompanyCustomer(Long securityCompanyCustomerId) {
-		return roundRepository.findBySubsidiary_SecurityCompanyCustomer_id(securityCompanyCustomerId);
-
+		return roundRepository.findBySubsidiaryId(subsidiaryId);
 	}
 
 	public Round findBySubsidiaryAndName(Long subsidiaryId, String roundName) {
-		return roundRepository.findBySubsidiary_idAndName(subsidiaryId, roundName);
+		return roundRepository.findBySubsidiaryIdAndName(subsidiaryId, roundName);
 	}
 
 }

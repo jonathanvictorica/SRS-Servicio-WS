@@ -21,7 +21,7 @@ public class RoundDelete {
 	}
 
 	public void invoke(RoundDeleteCommand data) {
-		round.delete(data.id, data.identificadorUsuario);
+		round.delete(data.id);
 	}
 
 	@Data
@@ -30,8 +30,6 @@ public class RoundDelete {
 		private static final long serialVersionUID = 1L;
 
 		private String id;
-
-		private String identificadorUsuario;
 	}
 
 }

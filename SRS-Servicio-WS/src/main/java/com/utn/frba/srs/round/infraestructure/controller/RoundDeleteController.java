@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.infraestructure.controller.impl.GenericWS;
 import com.utn.frba.srs.round.application.RoundDelete;
 import com.utn.frba.srs.round.application.RoundDelete.RoundDeleteCommand;
 import com.utn.frba.srs.round.infraestructure.controller.RoundDeleteController.Request;
+import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
 
 import io.swagger.annotations.Api;
 

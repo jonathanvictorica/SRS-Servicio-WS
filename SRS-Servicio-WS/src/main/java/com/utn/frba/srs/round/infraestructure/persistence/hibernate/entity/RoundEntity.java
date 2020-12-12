@@ -8,12 +8,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -26,7 +24,6 @@ import org.hibernate.annotations.FetchMode;
 
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
-import com.utn.frba.srs.subsidiary.infraestructure.persistence.hibernate.entity.Subsidiary;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,8 +41,8 @@ public class RoundEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Subsidiary subsidiary;
+	@Column(nullable = false, name = "subsidiary_id")
+	private Long subsidiaryId;
 
 	@NotNull
 	@Size(max = 25)
@@ -56,9 +53,6 @@ public class RoundEntity implements Serializable {
 	@Size(max = 125)
 	@Column(nullable = false)
 	private String description;
-
-	@ManyToOne
-	private RoundStateEntity roundState;
 
 	@OneToMany(mappedBy = "round", cascade = { CascadeType.PERSIST })
 	@Fetch(FetchMode.SUBSELECT)
@@ -90,12 +84,11 @@ public class RoundEntity implements Serializable {
 		this.audit.setCreationDate(new Date());
 		if (checkpoints != null) {
 			this.checkpoints.stream().forEach(a -> a.setRound(this));
-			this.checkpoints.stream().forEach(a -> a.setAudit(this.audit.clone()));
+//			this.checkpoints.stream().forEach(a -> a.setAudit(this.audit.clone()));
 		}
 		if (routes != null) {
 			this.routes.stream().forEach(a -> a.setRound(this));
 		}
-		this.roundState = new RoundStateEntity("ACTIVE");
 	}
 
 }
