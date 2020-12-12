@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.NotNull;
-
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import com.utn.frba.srs.round.infraestructure.controller.RoundGetController.Resp
 import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @RestController
@@ -58,106 +55,66 @@ public class RoundGetController extends GenericWS {
 
 		private Long id;
 
-		@NotNull
 		private Long subsidiaryId;
 
-		@NotNull
-		@ApiModelProperty(example = "Nombre")
 		private String name;
 
-		@NotNull
-		@ApiModelProperty(example = "Descripcion")
 		private String description;
 
-		@NotNull
-		private List<Response.RoundCheckpointDTO> checkpoints;
+		private List<Response.RoundCheckpoint> checkpoints;
 
-		@NotNull
-		private List<Response.RoundRouteDTO> routes;
+		private List<Response.RoundRoute> routes;
 
-		@NotNull
-		private UbicationDTO ubication;
+		private Ubication ubication;
 
-		@NotNull
-		@ApiModelProperty(example = "0")
 		private String zoomUbication = "0";
 
-		@NotNull
-		@ApiModelProperty(example = "1")
 		private Integer roundTime;
 
-		@NotNull
-		@ApiModelProperty(example = "1")
-		private Long userId;
-
 		@Data
-		public static class RoundSubsidiaryDTO implements Serializable {
+		public static class RoundCheckpoint implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
-			@NotNull
-			@ApiModelProperty(example = "1")
 			private Long id;
 
-		}
+			private Response.RoundCheckpoint.Checkpoint checkpoint;
 
-		@Data
-		public static class RoundStateDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			@ApiModelProperty
-			private String name;
-
-		}
-
-		@Data
-		public static class RoundCheckpointDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			@NotNull
-			private Response.RoundCheckpointDTO.CheckpointDTO checkpoint;
-
-			@ApiModelProperty(example = "1")
-			@NotNull
 			private Integer executionOrder;
 
 			@Data
-			public static class CheckpointDTO implements Serializable {
+			public static class Checkpoint implements Serializable {
+
 				private static final long serialVersionUID = 1L;
 
-				@ApiModelProperty(example = "1")
-				@NotNull
 				private Long id;
 
-			}
+				private String nfcIdentification;
 
+				private Ubication ubication;
+			}
 		}
 
 		@Data
-		public static class RoundRouteDTO implements Serializable {
+		public static class RoundRoute implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
-			@ApiModelProperty(example = "1")
-			@NotNull
+			private Long id;
+
 			private int routeOrder;
 
-			private UbicationDTO ubication;
+			private Response.Ubication ubication;
 
 		}
 
 		@Data
-		public static class UbicationDTO implements Serializable {
+		public static class Ubication implements Serializable {
 
 			private static final long serialVersionUID = 1L;
-			@NotNull
-			@ApiModelProperty(example = "11111111")
+
 			private String latitude;
 
-			@NotNull
-			@ApiModelProperty(example = "222222222")
 			private String longitude;
 		}
 

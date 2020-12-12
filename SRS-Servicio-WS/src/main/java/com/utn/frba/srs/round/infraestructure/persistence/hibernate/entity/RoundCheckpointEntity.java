@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import com.utn.frba.srs.checkpoint.infraestructure.persistence.hibernate.entity.Checkpoint;
+import com.utn.frba.srs.checkpoint.infraestructure.persistence.hibernate.entity.CheckpointEntity;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
 
 import lombok.Getter;
@@ -35,11 +35,11 @@ public class RoundCheckpointEntity implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	private RoundEntity round;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Checkpoint checkpoint;
+	private CheckpointEntity checkpoint;
 
 	@Positive
 	private Integer executionOrder;

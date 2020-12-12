@@ -45,72 +45,63 @@ public class RoundFind {
 
 		private static final long serialVersionUID = 1L;
 
+		private Long id;
+
+		private Long subsidiaryId;
+
 		private String name;
 
 		private String description;
 
-		private List<RoundQuery.RoundCheckpointDTO> checkpoints;
+		private List<RoundQuery.RoundCheckpoint> checkpoints;
 
-		private List<RoundQuery.RoundRouteDTO> routes;
+		private List<RoundQuery.RoundRoute> routes;
 
-		private UbicationDTO ubication;
+		private Ubication ubication;
 
 		private String zoomUbication = "0";
 
 		private Integer roundTime;
 
-		private Long userId;
-
 		@Data
-		public static class RoundSubsidiaryDTO implements Serializable {
+		public static class RoundCheckpoint implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
 			private Long id;
 
-		}
-
-		@Data
-		public static class RoundStateDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			private String name;
-
-		}
-
-		@Data
-		public static class RoundCheckpointDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			private RoundQuery.RoundCheckpointDTO.CheckpointDTO checkpoint;
+			private RoundQuery.RoundCheckpoint.Checkpoint checkpoint;
 
 			private Integer executionOrder;
 
 			@Data
-			public static class CheckpointDTO implements Serializable {
+			public static class Checkpoint implements Serializable {
+
 				private static final long serialVersionUID = 1L;
 
 				private Long id;
 
-			}
+				private String nfcIdentification;
 
+				private Ubication ubication;
+			}
 		}
 
 		@Data
-		public static class RoundRouteDTO implements Serializable {
+		public static class RoundRoute implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
+			private Long id;
+
 			private int routeOrder;
 
-			private UbicationDTO ubication;
+			private RoundQuery.Ubication ubication;
 
 		}
 
 		@Data
-		public static class UbicationDTO implements Serializable {
+		public static class Ubication implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
@@ -119,7 +110,6 @@ public class RoundFind {
 			private String longitude;
 		}
 	}
-
 }
 
 @Mapper

@@ -1,8 +1,7 @@
 package com.utn.frba.srs.round.infraestructure.persistence.hibernate.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.utn.frba.srs.shared.infraestructure.persistence.entity.Audit;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
 import lombok.Getter;
@@ -56,11 +56,11 @@ public class RoundEntity implements Serializable {
 
 	@OneToMany(mappedBy = "round", cascade = { CascadeType.PERSIST })
 	@Fetch(FetchMode.SUBSELECT)
-	private List<RoundCheckpointEntity> checkpoints;
+	private Set<RoundCheckpointEntity> checkpoints;
 
 	@OneToMany(mappedBy = "round", cascade = { CascadeType.PERSIST })
 	@Fetch(FetchMode.SUBSELECT)
-	private List<RoundRouteEntity> routes;
+	private Set<RoundRouteEntity> routes;
 
 	@Embedded
 	private Ubication ubication;
@@ -73,18 +73,15 @@ public class RoundEntity implements Serializable {
 	@Positive
 	private Integer roundTime;
 
-	@Embedded
-	private Audit audit;
-
 	@NotNull
 	@Column(nullable = false)
 	private Boolean active = true;
 
+	@PrePersist
+	@PreUpdate
 	public void complet() {
-		this.audit.setCreationDate(new Date());
 		if (checkpoints != null) {
 			this.checkpoints.stream().forEach(a -> a.setRound(this));
-//			this.checkpoints.stream().forEach(a -> a.setAudit(this.audit.clone()));
 		}
 		if (routes != null) {
 			this.routes.stream().forEach(a -> a.setRound(this));

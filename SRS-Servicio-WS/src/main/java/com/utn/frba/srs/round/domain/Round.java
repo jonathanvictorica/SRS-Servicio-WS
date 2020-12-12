@@ -19,8 +19,6 @@ public class Round {
 
 	private String description;
 
-	private String codeStatusRound;
-
 	private List<RoundCheckpoint> checkpoints;
 
 	private List<RoundRoute> routes;
@@ -38,8 +36,8 @@ public class Round {
 	}
 
 	public void create(Round round) {
-		if (roundRepository.existsById(id)) {
-			roundRepository.deleteCheckpointsAndRoutes(id);
+		if (round.id!=null && roundRepository.existsById(round.id)) {
+			roundRepository.deleteCheckpointsAndRoutes(round.id);
 		}
 		roundRepository.save(round);
 	}

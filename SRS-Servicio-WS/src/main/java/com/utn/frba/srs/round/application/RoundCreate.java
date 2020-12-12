@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
+import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.Request;
 
 import lombok.Data;
 
@@ -29,79 +30,62 @@ public class RoundCreate {
 	public void invoke(RoundCreateCommand data) {
 		round.create(roundMapper.roundCreateCommandToRound(data));
 	}
-	
-	
+
 	@Data
 	public static class RoundCreateCommand implements Serializable {
 
 		private static final long serialVersionUID = 1L;
 
+		private Long id;
+
+		private Long subsidiaryId;
+
 		private String name;
 
 		private String description;
 
-		private List<RoundCreateCommand.RoundCheckpointDTO> checkpoints;
+		private List<Request.RoundCheckpoint> checkpoints;
 
-		private List<RoundCreateCommand.RoundRouteDTO> routes;
+		private List<Request.RoundRoute> routes;
 
-		private UbicationDTO ubication;
+		private Ubication ubication;
 
 		private String zoomUbication = "0";
 
 		private Integer roundTime;
 
-		private Long userId;
-
 		@Data
-		public static class RoundSubsidiaryDTO implements Serializable {
+		public static class RoundCheckpoint implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
-			private Long id;
-
-		}
-
-		@Data
-		public static class RoundStateDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			private String name;
-
-		}
-
-		@Data
-		public static class RoundCheckpointDTO implements Serializable {
-
-			private static final long serialVersionUID = 1L;
-
-			private RoundCreateCommand.RoundCheckpointDTO.CheckpointDTO checkpoint;
+			private Request.RoundCheckpoint.Checkpoint checkpoint;
 
 			private Integer executionOrder;
 
 			@Data
-			public static class CheckpointDTO implements Serializable {
+			public static class Checkpoint implements Serializable {
+
 				private static final long serialVersionUID = 1L;
 
 				private Long id;
 
 			}
-
 		}
 
 		@Data
-		public static class RoundRouteDTO implements Serializable {
+		public static class RoundRoute implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
 			private int routeOrder;
 
-			private UbicationDTO ubication;
+			private Request.Ubication ubication;
 
 		}
 
 		@Data
-		public static class UbicationDTO implements Serializable {
+		public static class Ubication implements Serializable {
 
 			private static final long serialVersionUID = 1L;
 
@@ -118,5 +102,3 @@ interface RoundCreateCommandMapper {
 	public abstract Round roundCreateCommandToRound(RoundCreateCommand data);
 
 }
-
-
