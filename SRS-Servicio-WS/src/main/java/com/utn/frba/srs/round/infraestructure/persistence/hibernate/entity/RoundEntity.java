@@ -25,11 +25,9 @@ import org.hibernate.annotations.FetchMode;
 
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "OPERATIONS005_Round", uniqueConstraints = {
 		@UniqueConstraint(name = "uk_subsidiary_name", columnNames = { "subsidiary_id", "name" }) }, indexes = {

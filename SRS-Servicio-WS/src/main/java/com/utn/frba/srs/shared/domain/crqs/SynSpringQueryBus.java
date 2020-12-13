@@ -24,11 +24,11 @@ public class SynSpringQueryBus implements QueryBus {
     }
 
     @Override
-    public <T> T handle(Query<T> query) throws Exception {
+    public <T> T ask(Query<T> query) throws Exception {
         if (!handlers.containsKey(query.getClass())) {
             throw new Exception(String.format("No handler for %s", query.getClass().getName()));
         }
-        return (T) handlers.get(query.getClass()).handle(query);
+        return (T) handlers.get(query.getClass()).ask(query);
     }
 
     private Class<?> getQueryClass(QueryHandler handler) {

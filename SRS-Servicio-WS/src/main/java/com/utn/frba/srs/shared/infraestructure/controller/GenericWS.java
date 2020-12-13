@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.utn.frba.srs.shared.domain.crqs.CommandBus;
+import com.utn.frba.srs.shared.domain.crqs.QueryBus;
 
 @CrossOrigin("*")
 public class GenericWS {
@@ -15,4 +16,8 @@ public class GenericWS {
 	
 	@Autowired
 	protected CommandBus commandBusSync;
+	
+
+	@Autowired
+	protected QueryBus queryBusSync;
 }

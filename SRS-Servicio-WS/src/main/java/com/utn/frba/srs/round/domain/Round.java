@@ -5,10 +5,8 @@ import java.util.List;
 import com.utn.frba.srs.shared.infraestructure.persistence.entity.Ubication;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class Round {
 
 	private Long id;
@@ -33,6 +31,10 @@ public class Round {
 
 	public Round(RoundRepository roundRepository) {
 		this.roundRepository = roundRepository;
+	}
+	
+	public Round() {
+		
 	}
 
 	public void create(Round round) {

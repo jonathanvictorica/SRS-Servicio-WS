@@ -74,7 +74,7 @@ interface EntityMapper {
 
 	public abstract RoundEntity roundToRoundEntity(Round round);
 
-	public abstract Round roundEntityToRound(RoundEntity findById);
+	public abstract Round roundEntityToRound(RoundEntity round);
 
 }
 

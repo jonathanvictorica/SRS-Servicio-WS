@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
+import com.utn.frba.srs.round.application.RoundCreateHandler.RoundCreateCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
 import com.utn.frba.srs.shared.domain.crqs.Command;
@@ -17,14 +17,14 @@ import com.utn.frba.srs.shared.domain.crqs.CommandHandler;
 import lombok.Data;
 
 @Service
-public class RoundCreate implements CommandHandler<RoundCreateCommand>{
+public class RoundCreateHandler implements CommandHandler<RoundCreateCommand>{
 
 	private Round round;
 
 	private RoundCreateCommandMapper roundMapper = Mappers.getMapper(RoundCreateCommandMapper.class);
 
 	@Autowired
-	private RoundCreate(RoundRepository roundRepository) {
+	private RoundCreateHandler(RoundRepository roundRepository) {
 		round = new Round(roundRepository);
 	}
 
@@ -36,7 +36,7 @@ public class RoundCreate implements CommandHandler<RoundCreateCommand>{
 	public static class RoundCreateCommand implements Serializable, Command {
 
 		private static final long serialVersionUID = 1L;
-
+	
 		private Long id;
 
 		private Long subsidiaryId;

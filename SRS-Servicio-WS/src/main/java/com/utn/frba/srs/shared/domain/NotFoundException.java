@@ -6,4 +6,9 @@ public class NotFoundException extends Exception {
 		super("No encontrado con el id %s "+mensaje);
 		
 	}
+	
+	public NotFoundException() {
+		super("No encontrado");
+		
+	}
 }

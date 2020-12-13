@@ -15,20 +15,17 @@ import com.utn.frba.srs.round.domain.RoundRepository;
 
 import lombok.Data;
 
+
 @Service
 public class RoundFind {
 
-	private Round round;
+	protected Round round;
 
-	private RoundQueryMapper roundMapper = Mappers.getMapper(RoundQueryMapper.class);
+	protected RoundQueryMapper roundMapper = Mappers.getMapper(RoundQueryMapper.class);
 
 	@Autowired
-	private RoundFind(RoundRepository roundRepository) {
+	public RoundFind(RoundRepository roundRepository) {
 		round = new Round(roundRepository);
-	}
-
-	public RoundQuery findById(Long id) {
-		return roundMapper.roundToRoundQuery(round.findById(id));
 	}
 
 	public List<RoundQuery> findBySubsidiary(Long subsidiaryId) {
@@ -39,12 +36,12 @@ public class RoundFind {
 	public RoundQuery findBySubsidiaryAndName(Long subsidiaryId, String roundName) {
 		return roundMapper.roundToRoundQuery(round.findBySubsidiaryAndName(subsidiaryId, roundName));
 	}
-
+	
 	@Data
 	public static class RoundQuery implements Serializable {
 
 		private static final long serialVersionUID = 1L;
-
+		
 		private Long id;
 
 		private Long subsidiaryId;

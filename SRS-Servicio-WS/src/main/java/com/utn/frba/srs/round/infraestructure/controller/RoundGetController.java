@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.utn.frba.srs.round.application.RoundFind;
 import com.utn.frba.srs.round.application.RoundFind.RoundQuery;
-import com.utn.frba.srs.round.infraestructure.controller.RoundGetController.Response;
+import com.utn.frba.srs.round.application.RoundFindByIdHandler;
+import com.utn.frba.srs.round.infraestructure.controller.RoundGetController.RoundGetResponse;
 import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
 
 import io.swagger.annotations.Api;
@@ -26,31 +27,32 @@ import lombok.Data;
 @Api(tags = "AdmRound", description = ("AdmRound"))
 public class RoundGetController extends GenericWS {
 
+	private RoundFindQueryMapper mapper = Mappers.getMapper(RoundFindQueryMapper.class);
+
 	@Autowired
 	private RoundFind roundFind;
 
-	private RoundFindQueryMapper mapper = Mappers.getMapper(RoundFindQueryMapper.class);
-
 	@GetMapping(path = "/round/{id}")
-	public ResponseEntity<Response> findById(@PathVariable("id") Long id) {
-		return ResponseEntity.ok(mapper.roundQueryToResponse(roundFind.findById(id)));
+	public ResponseEntity<RoundGetResponse> findById(@PathVariable("id") Long id) throws Exception {
+		return ResponseEntity
+				.ok(mapper.roundQueryToResponse(queryBusSync.ask(new RoundFindByIdHandler.RoundFindByIdQuery(id))));
 	}
 
 	@GetMapping(path = "/round/{subsidiaryId}/{roundName}")
-	public ResponseEntity<Response> findBySubsidiaryAndRoundName(@PathVariable("subsidiaryId") Long subsidiaryId,
+	public ResponseEntity<RoundGetResponse> findBySubsidiaryAndRoundName(@PathVariable("subsidiaryId") Long subsidiaryId,
 			@PathVariable("roundName") String roundName) {
 		return ResponseEntity
 				.ok(mapper.roundQueryToResponse(roundFind.findBySubsidiaryAndName(subsidiaryId, roundName)));
 	}
 
 	@GetMapping(path = "/rounds/{subsidiaryId}")
-	public ResponseEntity<List<Response>> findBySubsidiary(@PathVariable("subsidiaryId") Long subsidiaryId) {
+	public ResponseEntity<List<RoundGetResponse>> findBySubsidiary(@PathVariable("subsidiaryId") Long subsidiaryId) {
 		return ResponseEntity.ok(roundFind.findBySubsidiary(subsidiaryId).stream()
 				.map(a -> mapper.roundQueryToResponse(a)).collect(Collectors.toList()));
 	}
 
 	@Data
-	public static class Response implements Serializable {
+	public static class RoundGetResponse implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		private Long id;
@@ -61,9 +63,9 @@ public class RoundGetController extends GenericWS {
 
 		private String description;
 
-		private List<Response.RoundCheckpoint> checkpoints;
+		private List<RoundGetResponse.RoundCheckpoint> checkpoints;
 
-		private List<Response.RoundRoute> routes;
+		private List<RoundGetResponse.RoundRoute> routes;
 
 		private Ubication ubication;
 
@@ -78,7 +80,7 @@ public class RoundGetController extends GenericWS {
 
 			private Long id;
 
-			private Response.RoundCheckpoint.Checkpoint checkpoint;
+			private RoundGetResponse.RoundCheckpoint.Checkpoint checkpoint;
 
 			private Integer executionOrder;
 
@@ -104,7 +106,7 @@ public class RoundGetController extends GenericWS {
 
 			private int routeOrder;
 
-			private Response.Ubication ubication;
+			private RoundGetResponse.Ubication ubication;
 
 		}
 
@@ -124,5 +126,5 @@ public class RoundGetController extends GenericWS {
 
 @Mapper
 interface RoundFindQueryMapper {
-	public Response roundQueryToResponse(RoundQuery response);
+	public RoundGetResponse roundQueryToResponse(RoundQuery response);
 }

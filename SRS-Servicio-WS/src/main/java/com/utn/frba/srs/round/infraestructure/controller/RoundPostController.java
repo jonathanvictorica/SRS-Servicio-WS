@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
-import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.Request;
+import com.utn.frba.srs.round.application.RoundCreateHandler.RoundCreateCommand;
+import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.RoundPostRequest;
 import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
 
 import io.swagger.annotations.Api;
@@ -25,11 +25,11 @@ public class RoundPostController extends GenericWS {
 	private RoundCreateCommandMapper mapper = Mappers.getMapper(RoundCreateCommandMapper.class);
 
 	@PostMapping(path = "/round")
-	public void create(@RequestBody Request request) throws Exception {
-		commandBusSync.invoke(mapper.requestToRoundCreateCommand(request));
+	public void create(@RequestBody RoundPostRequest request) throws Exception {
+		commandBusSync.invoke(mapper.createRoundCreateCommand(request));
 	}
 
-	public static @lombok.Data class Request implements Serializable {
+	public static @lombok.Data class RoundPostRequest implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		private Long id;
@@ -40,9 +40,9 @@ public class RoundPostController extends GenericWS {
 
 		private String description;
 
-		private List<Request.RoundCheckpoint> checkpoints;
+		private List<RoundPostRequest.RoundCheckpoint> checkpoints;
 
-		private List<Request.RoundRoute> routes;
+		private List<RoundPostRequest.RoundRoute> routes;
 
 		private Ubication ubication;
 
@@ -55,7 +55,7 @@ public class RoundPostController extends GenericWS {
 
 			private static final long serialVersionUID = 1L;
 
-			private Request.RoundCheckpoint.Checkpoint checkpoint;
+			private RoundPostRequest.RoundCheckpoint.Checkpoint checkpoint;
 
 			private Integer executionOrder;
 
@@ -76,7 +76,7 @@ public class RoundPostController extends GenericWS {
 
 			private int routeOrder;
 
-			private Request.Ubication ubication;
+			private RoundPostRequest.Ubication ubication;
 
 		}
 
@@ -96,5 +96,5 @@ public class RoundPostController extends GenericWS {
 
 @Mapper
 interface RoundCreateCommandMapper {
-	public RoundCreateCommand requestToRoundCreateCommand(Request request);
+	public RoundCreateCommand createRoundCreateCommand(RoundPostRequest request);
 }

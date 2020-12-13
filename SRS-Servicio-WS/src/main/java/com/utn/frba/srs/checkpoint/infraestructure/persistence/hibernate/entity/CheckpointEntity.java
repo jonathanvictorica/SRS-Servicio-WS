@@ -43,6 +43,6 @@ public class CheckpointEntity implements Serializable {
 	@Embedded
 	private Ubication ubication;
 
-	private Long subsidiary_id;
+	private Long subsidiaryId;
 
 }
