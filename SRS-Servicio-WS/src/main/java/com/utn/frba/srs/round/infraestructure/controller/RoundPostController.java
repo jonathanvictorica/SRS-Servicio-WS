@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utn.frba.srs.round.application.RoundCreate;
 import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
 import com.utn.frba.srs.round.infraestructure.controller.RoundPostController.Request;
 import com.utn.frba.srs.shared.infraestructure.controller.GenericWS;
@@ -24,14 +22,11 @@ import lombok.Data;
 @Api(tags = "AdmRound", description = ("AdmRound"))
 public class RoundPostController extends GenericWS {
 
-	@Autowired
-	private RoundCreate roundCreate;
-
 	private RoundCreateCommandMapper mapper = Mappers.getMapper(RoundCreateCommandMapper.class);
 
 	@PostMapping(path = "/round")
-	public void create(@RequestBody Request request) {
-		roundCreate.invoke(mapper.requestToRoundCreateCommand(request));
+	public void create(@RequestBody Request request) throws Exception {
+		commandBusSync.invoke(mapper.requestToRoundCreateCommand(request));
 	}
 
 	public static @lombok.Data class Request implements Serializable {

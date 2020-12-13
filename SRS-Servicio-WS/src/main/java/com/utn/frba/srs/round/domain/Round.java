@@ -42,7 +42,7 @@ public class Round {
 		roundRepository.save(round);
 	}
 
-	public void delete(String id) {
+	public void delete(Long id) {
 		roundRepository.delete(id);
 	}
 

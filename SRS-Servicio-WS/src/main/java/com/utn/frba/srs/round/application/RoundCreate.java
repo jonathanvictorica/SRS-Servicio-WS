@@ -11,11 +11,13 @@ import org.springframework.stereotype.Service;
 import com.utn.frba.srs.round.application.RoundCreate.RoundCreateCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
+import com.utn.frba.srs.shared.domain.crqs.Command;
+import com.utn.frba.srs.shared.domain.crqs.CommandHandler;
 
 import lombok.Data;
 
 @Service
-public class RoundCreate {
+public class RoundCreate implements CommandHandler<RoundCreateCommand>{
 
 	private Round round;
 
@@ -31,7 +33,7 @@ public class RoundCreate {
 	}
 
 	@Data
-	public static class RoundCreateCommand implements Serializable {
+	public static class RoundCreateCommand implements Serializable, Command {
 
 		private static final long serialVersionUID = 1L;
 

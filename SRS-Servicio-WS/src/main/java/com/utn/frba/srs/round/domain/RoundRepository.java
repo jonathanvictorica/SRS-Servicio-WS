@@ -11,7 +11,7 @@ public interface RoundRepository {
 
 	void save(Round data);
 
-	void delete(String id);
+	void delete(Long id);
 
 	Optional<Round> findById(Long id);
 

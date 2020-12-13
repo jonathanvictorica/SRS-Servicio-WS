@@ -5,13 +5,16 @@ import java.io.Serializable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.utn.frba.srs.round.application.RoundDelete.RoundDeleteCommand;
 import com.utn.frba.srs.round.domain.Round;
 import com.utn.frba.srs.round.domain.RoundRepository;
+import com.utn.frba.srs.shared.domain.crqs.Command;
+import com.utn.frba.srs.shared.domain.crqs.CommandHandler;
 
 import lombok.Data;
 
 @Service
-public class RoundDelete {
+public class RoundDelete implements CommandHandler<RoundDeleteCommand>{
 
 	private Round round;
 
@@ -25,11 +28,11 @@ public class RoundDelete {
 	}
 
 	@Data
-	public static class RoundDeleteCommand implements Serializable {
+	public static class RoundDeleteCommand implements Serializable,Command {
 
 		private static final long serialVersionUID = 1L;
 
-		private String id;
+		private Long id;
 	}
 
 }
