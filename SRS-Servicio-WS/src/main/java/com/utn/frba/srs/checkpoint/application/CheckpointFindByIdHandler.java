@@ -11,6 +11,7 @@ import com.utn.frba.srs.checkpoint.application.CheckpointFindByIdHandler.Checkpo
 import com.utn.frba.srs.checkpoint.application.CheckpointFindByIdHandler.CheckpointQuery;
 import com.utn.frba.srs.checkpoint.domain.Checkpoint;
 import com.utn.frba.srs.checkpoint.domain.CheckpointRepository;
+import com.utn.frba.srs.shared.domain.DomainException;
 import com.utn.frba.srs.shared.domain.crqs.Query;
 import com.utn.frba.srs.shared.domain.crqs.QueryHandler;
 
@@ -29,7 +30,7 @@ public class CheckpointFindByIdHandler implements QueryHandler<CheckpointQuery, 
 	}
 
 	@Override
-	public CheckpointQuery ask(CheckpointFindByIdQuery query) throws Exception {
+	public CheckpointQuery ask(CheckpointFindByIdQuery query) throws DomainException {
 		return mapper.roundToCheckpointQuery(checkpoint.findById(query.getId()));
 	}
 

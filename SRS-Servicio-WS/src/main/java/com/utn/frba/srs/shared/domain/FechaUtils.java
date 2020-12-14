@@ -85,7 +85,7 @@ public class FechaUtils {
 	}
 
 	public static Date getTime(String hora) {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		try {
 			return sdf.parse(hora);
 		} catch (ParseException e) {

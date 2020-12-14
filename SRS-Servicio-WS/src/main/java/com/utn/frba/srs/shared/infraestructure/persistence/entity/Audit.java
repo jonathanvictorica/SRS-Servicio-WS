@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
-public class Audit implements Serializable, Cloneable {
+public class Audit implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@NotNull

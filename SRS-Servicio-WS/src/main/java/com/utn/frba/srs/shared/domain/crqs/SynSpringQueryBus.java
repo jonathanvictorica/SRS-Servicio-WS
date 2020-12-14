@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import com.utn.frba.srs.shared.domain.DomainException;
+
 @Component
 @Primary
 public class SynSpringQueryBus implements QueryBus {
@@ -24,9 +26,9 @@ public class SynSpringQueryBus implements QueryBus {
     }
 
     @Override
-    public <T> T ask(Query<T> query) throws Exception {
+    public <T> T ask(Query<T> query) throws DomainException {
         if (!handlers.containsKey(query.getClass())) {
-            throw new Exception(String.format("No handler for %s", query.getClass().getName()));
+            throw new DomainException(String.format("No handler for %s", query.getClass().getName()));
         }
         return (T) handlers.get(query.getClass()).ask(query);
     }

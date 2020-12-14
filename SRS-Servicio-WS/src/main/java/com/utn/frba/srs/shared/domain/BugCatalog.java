@@ -1,6 +1,10 @@
 package com.utn.frba.srs.shared.domain;
 
 public class BugCatalog {
+	
+	private BugCatalog() {
+		
+	}
 
 	public static final String USUARIO_CON_DOCUMENTO_EXISTENTE = "";
 	public static final String NICK_USUARIO_EXISTENTE = "";

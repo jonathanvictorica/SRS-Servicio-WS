@@ -9,6 +9,8 @@ import java.util.Map;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import com.utn.frba.srs.shared.domain.DomainException;
+
 @Component
 @Primary
 public class SynSpringCommandBus implements CommandBus{
@@ -23,7 +25,7 @@ public class SynSpringCommandBus implements CommandBus{
 	}
 
 	@Override
-	public void invoke(Command command) throws Exception  {
+	public void invoke(Command command) throws DomainException  {
 		
 		handlers.get(command.getClass()).invoke(command);
 	}

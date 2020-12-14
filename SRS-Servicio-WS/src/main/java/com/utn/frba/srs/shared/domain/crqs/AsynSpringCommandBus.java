@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import com.utn.frba.srs.shared.domain.DomainException;
+
 @Component("AsynSpringCommandBus")
 public class AsynSpringCommandBus implements CommandBus {
 
@@ -20,12 +22,12 @@ public class AsynSpringCommandBus implements CommandBus {
 	}
 
 	@Override
-	public void invoke(Command command) throws Exception {
+	public void invoke(Command command) throws DomainException {
 		events.add(command);
 	}
 
 	@Scheduled(fixedRate = 10000)
-	public void execute() throws Exception {
+	public void execute() throws DomainException {
 		while (!events.isEmpty()) {
 			commandBusSyncr.invoke(events.poll());
 		}
