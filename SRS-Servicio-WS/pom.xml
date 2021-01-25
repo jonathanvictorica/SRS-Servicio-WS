@@ -109,6 +109,13 @@
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
+
 
 	</dependencies>
 	<build>
@@ -135,12 +142,12 @@
 							<artifactId>lombok</artifactId>
 							<version>1.18.16</version>
 						</path>
-<!-- 						This is needed when using Lombok 1.8.16 and above -->
-<!-- 						<path> -->
-<!-- 							<groupId>org.projectlombok</groupId> -->
-<!-- 							<artifactId> lombok-mapstruct-binding</artifactId> -->
-<!-- 							<version>0.1.0</version> -->
-<!-- 						</path> -->
+						<!-- This is needed when using Lombok 1.8.16 and above -->
+						<!-- <path> -->
+						<!-- <groupId>org.projectlombok</groupId> -->
+						<!-- <artifactId> lombok-mapstruct-binding</artifactId> -->
+						<!-- <version>0.1.0</version> -->
+						<!-- </path> -->
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
