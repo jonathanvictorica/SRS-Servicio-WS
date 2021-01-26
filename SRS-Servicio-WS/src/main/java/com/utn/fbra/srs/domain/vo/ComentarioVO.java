@@ -1,5 +1,13 @@
 package com.utn.fbra.srs.domain.vo;
 
-public class ComentarioVO {
+import com.utn.fbra.srs.shared.domain.ValueObject;
 
+public class ComentarioVO extends ValueObject<String>  {
+
+	public ComentarioVO(String valor) {
+		super.valor=valor;
+	}
+
+	
 }
+

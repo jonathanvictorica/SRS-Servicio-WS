@@ -6,6 +6,7 @@ import com.utn.fbra.srs.domain.model.checkpoint.CheckpointAR;
 import com.utn.fbra.srs.domain.vo.IdVO;
 import com.utn.fbra.srs.domain.vo.NumeroVO;
 import com.utn.fbra.srs.domain.vo.UbicacionVO;
+import com.utn.fbra.srs.shared.domain.Repository;
 
 public interface CheckpointRepository extends Repository<CheckpointAR,IdVO> {
 	

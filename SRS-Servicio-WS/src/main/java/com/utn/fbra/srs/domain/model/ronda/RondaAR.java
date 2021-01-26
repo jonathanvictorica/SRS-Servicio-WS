@@ -21,7 +21,7 @@ public class RondaAR extends AggregateRoot {
 		return (RondaRepository) RepositoryFactory.create("RondaRepository");
 	}
 
-	private RondaAR(IdVO rondaId, NombreVO nombre, IdVO clienteEmpSegID) {
+	public RondaAR(IdVO rondaId, NombreVO nombre, IdVO clienteEmpSegID) {
 		super();
 		this.rondaId = rondaId;
 		this.nombre = nombre;
@@ -30,12 +30,12 @@ public class RondaAR extends AggregateRoot {
 		this.rutas = new RondaRutasVO();
 	}
 
-	public static RondaAR buscarPorID(IdVO id) {
-		return getRondaRepository().findById(id);
+	public static RondaAR buscarPorID(IdVO id) throws DomainException {
+		return getRondaRepository().buscarPorId(id);
 	}
 
 	public static List<RondaAR> listarPorClienteID(IdVO clienteId) {
-		return getRondaRepository().findByClienteID(clienteId);
+		return getRondaRepository().buscarPorClienteID(clienteId);
 	}
 
 	public void agregarCheckpoint(RondaCheckpointVO checkpoint) {

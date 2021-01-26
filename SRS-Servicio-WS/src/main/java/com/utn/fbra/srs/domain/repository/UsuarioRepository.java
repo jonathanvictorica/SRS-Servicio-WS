@@ -5,6 +5,7 @@ import com.utn.fbra.srs.domain.vo.IdVO;
 import com.utn.fbra.srs.domain.vo.MailVO;
 import com.utn.fbra.srs.domain.vo.NickVO;
 import com.utn.fbra.srs.domain.vo.PasswordVO;
+import com.utn.fbra.srs.shared.domain.Repository;
 
 public interface UsuarioRepository extends Repository<UsuarioAR, IdVO> {
 

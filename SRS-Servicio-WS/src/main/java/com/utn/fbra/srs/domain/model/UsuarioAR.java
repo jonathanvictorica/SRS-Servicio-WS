@@ -68,7 +68,7 @@ public class UsuarioAR extends AggregateRoot {
 	}
 
 	public static UsuarioAR buscarPorID(IdVO id) throws DomainException {
-		return Optional.ofNullable(getUsuarioRepository().findById(id))
+		return Optional.ofNullable(getUsuarioRepository().buscarPorId(id))
 				.orElseThrow(() -> new DomainException("No existe el usuario con el id " + id.toString()));
 	}
 

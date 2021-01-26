@@ -15,7 +15,10 @@ import com.utn.fbra.srs.domain.vo.PerfilVO;
 import com.utn.fbra.srs.shared.application.AdmUseCase;
 import com.utn.fbra.srs.shared.domain.BusFactory;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 public class AdmUsuarioUC implements AdmUseCase<CrearUsuario, ModificarUsuario, UUID> {
 
@@ -34,11 +37,10 @@ public class AdmUsuarioUC implements AdmUseCase<CrearUsuario, ModificarUsuario, 
 	@Override
 	public void modificar(ModificarUsuario request) throws Exception {
 		UsuarioAR usuario = UsuarioAR.buscarPorID(new IdVO(request.usuarioID));
-		
-		usuario.cambiar(new NickVO(request.getNick()), new MailVO(request.getMail()),
-				new NombreVO(request.getNombre()), new NombreVO(request.getApellido()),
-				new PerfilVO(request.getPerfilUsuario()));
-		
+
+		usuario.cambiar(new NickVO(request.getNick()), new MailVO(request.getMail()), new NombreVO(request.getNombre()),
+				new NombreVO(request.getApellido()), new PerfilVO(request.getPerfilUsuario()));
+
 		usuario.modificar();
 
 	}
@@ -49,6 +51,9 @@ public class AdmUsuarioUC implements AdmUseCase<CrearUsuario, ModificarUsuario, 
 		usuario.eliminar();
 	}
 
+	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
 	public static class CrearUsuario {
 		private UUID usuarioID;
 		private String nick;
@@ -58,65 +63,11 @@ public class AdmUsuarioUC implements AdmUseCase<CrearUsuario, ModificarUsuario, 
 		private String apellido;
 		private String perfilUsuario;
 
-		public UUID getUsuarioID() {
-			return usuarioID;
-		}
-
-		public void setUsuarioID(UUID usuarioID) {
-			this.usuarioID = usuarioID;
-		}
-
-		public String getNick() {
-			return nick;
-		}
-
-		public void setNick(String nick) {
-			this.nick = nick;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
-		public String getMail() {
-			return mail;
-		}
-
-		public void setMail(String mail) {
-			this.mail = mail;
-		}
-
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public String getApellido() {
-			return apellido;
-		}
-
-		public void setApellido(String apellido) {
-			this.apellido = apellido;
-		}
-
-		public String getPerfilUsuario() {
-			return perfilUsuario;
-		}
-
-		public void setPerfilUsuario(String perfilUsuario) {
-			this.perfilUsuario = perfilUsuario;
-		}
-
 	}
 
 	@Data
+	@AllArgsConstructor
+	@NoArgsConstructor
 	public static class ModificarUsuario {
 		private UUID usuarioID;
 		private String nick;
@@ -124,54 +75,6 @@ public class AdmUsuarioUC implements AdmUseCase<CrearUsuario, ModificarUsuario, 
 		private String nombre;
 		private String apellido;
 		private String perfilUsuario;
-
-		public UUID getUsuarioID() {
-			return usuarioID;
-		}
-
-		public void setUsuarioID(UUID usuarioID) {
-			this.usuarioID = usuarioID;
-		}
-
-		public String getNick() {
-			return nick;
-		}
-
-		public void setNick(String nick) {
-			this.nick = nick;
-		}
-
-		public String getMail() {
-			return mail;
-		}
-
-		public void setMail(String mail) {
-			this.mail = mail;
-		}
-
-		public String getNombre() {
-			return nombre;
-		}
-
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-
-		public String getApellido() {
-			return apellido;
-		}
-
-		public void setApellido(String apellido) {
-			this.apellido = apellido;
-		}
-
-		public String getPerfilUsuario() {
-			return perfilUsuario;
-		}
-
-		public void setPerfilUsuario(String perfilUsuario) {
-			this.perfilUsuario = perfilUsuario;
-		}
 
 	}
 

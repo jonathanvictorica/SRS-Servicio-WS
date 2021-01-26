@@ -29,8 +29,8 @@ public class CheckpointAR extends AggregateRoot {
 		return (CheckpointRepository) RepositoryFactory.create("CheckpointRepository");
 	}
 
-	public static CheckpointAR buscarPorID(IdVO id) {
-		return getCheckpointRepository().findById(id);
+	public static CheckpointAR buscarPorID(IdVO id) throws DomainException {
+		return getCheckpointRepository().buscarPorId(id);
 	}
 
 	public static List<CheckpointAR> listarPorClienteID(IdVO clienteId) {
